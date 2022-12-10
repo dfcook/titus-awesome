@@ -12,11 +12,20 @@ local globalKeys =
   -- Hotkeys
   awful.key({modkey}, 'F1', hotkeys_popup.show_help, {description = 'Show help', group = 'awesome'}),
   -- Tag browsing
-  awful.key({modkey}, 'w', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
-  awful.key({modkey}, 's', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
-  awful.key({altkey, 'Control'}, 'Up', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
-  awful.key({altkey, 'Control'}, 'Down', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
-  awful.key({modkey}, 'Escape', awful.tag.history.restore, {description = 'go back', group = 'tag'}),
+  awful.key({modkey}, 'Left', function()
+    awful.screen.connect_for_each_screen(
+      function(s)
+        awful.tag.viewprev(s)
+      end
+    )
+  end, {description = 'view previous', group = 'tag'}),
+  awful.key({modkey}, 'Right', function()
+    awful.screen.connect_for_each_screen(
+      function(s)
+        awful.tag.viewnext(s)
+      end
+    )
+  end, {description = 'view previous', group = 'tag'}),
   -- Default client focus
   awful.key(
     {modkey},
@@ -151,7 +160,7 @@ local globalKeys =
   -- Standard program
   awful.key(
     {modkey},
-    'x',
+    't',
     function()
       awful.spawn(apps.default.terminal)
     end,
@@ -252,15 +261,6 @@ local globalKeys =
     end,
     {description = 'restore minimized', group = 'client'}
   ),
-  -- Dropdown application
-  awful.key(
-    {modkey},
-    'z',
-    function()
-      _G.toggle_quake()
-    end,
-    {description = 'dropdown application', group = 'launcher'}
-  ),
   -- Widgets popups
   --[[awful.key(
     {altkey},
@@ -354,21 +354,6 @@ local globalKeys =
     'o',
     awful.client.movetoscreen,
     {description = 'move window to next screen', group = 'client'}
-  ),
-  -- Open default program for tag
-  awful.key(
-    {modkey},
-    't',
-    function()
-      awful.spawn(
-          awful.screen.focused().selected_tag.defaultApp,
-          {
-            tag = _G.mouse.screen.selected_tag,
-            placement = awful.placement.bottom_right
-          }
-        )
-    end,
-    {description = 'Open default program for tag/workspace', group = 'tag'}
   ),
   -- Custom hotkeys
   -- vfio integration

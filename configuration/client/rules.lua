@@ -25,10 +25,6 @@ awful.rules.rules = {
       maximized_vertical = false
     }
   },
-  {
-    rule_any = {name = {'QuakeTerminal'}},
-    properties = {skip_decoration = true}
-  },
   -- Titlebars
   {
     rule_any = {type = {'dialog'}, class = {'Wicd-client.py', 'calendar.google.com'}},

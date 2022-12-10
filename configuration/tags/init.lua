@@ -5,9 +5,9 @@ local apps = require('configuration.apps')
 
 local tags = {
   {
-    icon = icons.chrome,
-    type = 'chrome',
-    defaultApp = apps.default.browser,
+    icon = icons.social,
+    type = 'social',
+    defaultApp = apps.default.social,
     screen = 1
   },
   {
@@ -17,33 +17,15 @@ local tags = {
     screen = 1
   },
   {
-    icon = icons.social,
-    type = 'social',
-    defaultApp = apps.default.social,
-    screen = 1
-  },
-  {
     icon = icons.game,
     type = 'game',
     defaultApp = apps.default.game,
     screen = 1
   },
   {
-    icon = icons.folder,
-    type = 'files',
-    defaultApp = apps.default.files,
-    screen = 1
-  },
-  {
     icon = icons.music,
     type = 'music',
     defaultApp = apps.default.music,
-    screen = 1
-  },
-  {
-    icon = icons.lab,
-    type = 'any',
-    defaultApp = apps.default.rofi,
     screen = 1
   }
 }
@@ -63,7 +45,7 @@ awful.screen.connect_for_each_screen(
           icon = tag.icon,
           icon_only = true,
           layout = awful.layout.suit.tile,
-          gap_single_client = false,
+          gap_single_client = true,
           gap = 4,
           screen = s,
           defaultApp = tag.defaultApp,
